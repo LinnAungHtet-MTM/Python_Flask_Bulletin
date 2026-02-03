@@ -35,42 +35,47 @@ A simple Flask Bulletin API project with **JWT authentication**, **role-based ac
 
 ## Setup
 
-1. Clone repository
+## 1. Clone repository
 
 ```bash
 git clone https://github.com/LinnAungHtet-MTM/Python_Flask_Bulletin.git
+
 cd Python_Flask_Bulletin
 ```
 
-2. Install dependencies
+## 2. Install dependencies
 
 *(dependencies only install)*
 ```bash
 poetry install --no-root
 ```
 
-3. Copy .env.example to .env
+## 3. Copy .env.example to .env
 
 ```bash
 copy .env.example .env
 ```
 
-4. Run Database Migration
+## 4. Run Database Migration
 ```bash
 poetry run flask db upgrade
 ```
 
-4. Run Database Seeder
+## 5. Run Database Seeder
 ```bash
 poetry run flask seed
 ```
 
-5. Default Login Credentials
-After running the seeder command, you can login using the following credentials:
-    **Email:**    =>  admin@gmail.com
--   **Password:** =>  Admin123
+## 6. Default Login Credentials
 
-6. Run Application
+After running the seeder command, you can login using the following credentials:
+
+```text
+Email:    admin@gmail.com
+Password: Admin123
+```
+
+## 7. Run Application
 ```bash
 poetry run flask run
 ```
