@@ -1,6 +1,6 @@
 from typing import Optional
+from app.exceptions.field_validator import validate_title_format
 from pydantic import BaseModel, field_validator
-from pydantic_core import PydanticCustomError
 
 class CreatePostRequest(BaseModel):
     title: str
@@ -10,12 +10,7 @@ class CreatePostRequest(BaseModel):
     @field_validator("title")
     @classmethod
     def validate_title_length(cls, v):
-        if len(v) > 255:
-            raise PydanticCustomError(
-                "title_too_long",
-                "title field must not be greater than 255"
-            )
-        return v
+        return validate_title_format(cls, v)
 
 
 class PostSearchRequest(BaseModel):
@@ -33,9 +28,4 @@ class UpdatePostRequest(BaseModel):
     @field_validator("title")
     @classmethod
     def validate_title_length(cls, v):
-        if len(v) > 255:
-            raise PydanticCustomError(
-                "title_too_long",
-                "title field must not be greater than 255"
-            )
-        return v
+        return validate_title_format(cls, v)
