@@ -138,7 +138,8 @@ class PostController:
         pagination = PostService.search_posts(
             role=role,
             user_id=login_user_id,
-            keyword=payload.keyword,
+            title=payload.title,
+            description=payload.description,
             status=payload.status,
             date=payload.date,
             page=page,

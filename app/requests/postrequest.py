@@ -14,7 +14,9 @@ class CreatePostRequest(BaseModel):
 
 
 class PostSearchRequest(BaseModel):
-    keyword: Optional[str] = None
+    # keyword: Optional[str] = None
+    title: Optional[str] = None
+    description: Optional[str] = None
     status: Optional[int] = None
     date: Optional[str] = None
 

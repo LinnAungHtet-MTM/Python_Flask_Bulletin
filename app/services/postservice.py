@@ -219,8 +219,8 @@ class PostService:
 
     # Search post by keyword  (title, desc, status, created_date)
     @staticmethod
-    def search_posts(role, user_id, keyword=None, status=None, date=None, page=1, per_page=10):
+    def search_posts(role, user_id, title=None, description=None, status=None, date=None, page=1, per_page=10):
         if role:
-            return PostDao.search_posts(keyword, status, date, page, per_page, user_id)
+            return PostDao.search_posts(title, description, status, date, page, per_page, user_id)
 
-        return PostDao.search_posts(keyword, status, date, page, per_page)
+        return PostDao.search_posts(title, description, status, date, page, per_page)

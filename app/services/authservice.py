@@ -7,6 +7,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from flask_jwt_extended import create_access_token, decode_token, create_refresh_token
 from app.dao.userdao import UserDao
 import hashlib
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class AuthService:
@@ -98,9 +102,10 @@ class AuthService:
 
         token = AuthService.generate_reset_token(payload.email)
         token_hash = AuthService.hash_token(token)
+        FRONTEND_URL = os.getenv("FRONTEND_URL")
         PasswordResetDao.create(payload.email, token_hash)
 
-        reset_link = f"http://localhost:5173/reset-password?token={token}"
+        reset_link = f"{FRONTEND_URL}/reset-password?token={token}"
 
         send_reset_password_email(payload.email, reset_link)
 

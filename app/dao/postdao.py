@@ -82,19 +82,25 @@ class PostDao:
 
     # Search post by keyword  (title, desc, status, created_date)
     @staticmethod
-    def search_posts(keyword=None, status=None, date=None, page=1, per_page=10, user_id=None):
+    def search_posts(title=None, description=None, status=None, date=None, page=1, per_page=10, user_id=None):
         query = Post.query.filter(Post.deleted_at.is_(None))
 
         if user_id is not None:
             query = query.filter(Post.create_user_id == user_id)
 
-        if keyword:
-            query = query.filter(
-                or_(
-                    Post.title.ilike(f"%{keyword}%"),
-                    Post.description.ilike(f"%{keyword}%")
-                )
-            )
+        # if keyword:
+        #     query = query.filter(
+        #         or_(
+        #             Post.title.ilike(f"%{keyword}%"),
+        #             Post.description.ilike(f"%{keyword}%")
+        #         )
+        #     )
+
+        if title is not None:
+            query = query.filter(Post.title.ilike(f"%{title}%"))
+
+        if description is not None:
+            query = query.filter(Post.description.ilike(f"%{description}%"))
 
         if status is not None:
             query = query.filter(Post.status == status)
